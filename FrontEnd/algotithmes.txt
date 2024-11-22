@@ -1,0 +1,19 @@
+
+
+Algorithme AfficherGallery(Tableau)
+Variables
+    elementFigure  <- "" : STRING
+    elementImg     <- "" : STRING
+    elementCaption <- "" : STRING
+Début
+    Effacer gallerie
+    Pour i <- 0 ; i < Tableau.length ;  i++
+        elementFigure <- "figure"
+        elementImg <- "img"
+        elementCaption <- "figurecaption"
+        lié l'image à elementImg
+        lié la description à elementCaption
+        attribuer elementImg et elementCaption à elementFigure
+        inserer elementFigure dans la page
+    Fin Pour
+Fin
