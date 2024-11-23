@@ -8,3 +8,5 @@ fetch('http://localhost:5678/api/works')
     .catch(error => {
         console.error('Erreur lors de la récupération des données :', error);
     });
+
+    generateFilters()
