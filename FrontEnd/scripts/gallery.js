@@ -18,21 +18,15 @@ function showGallery(tableau) {
 }
 
 function generateFilters() {
-    const filters = ['Tous','Objets','Appartements','Hôtels & restaurants'];
-    const parent = document.getElementById('portfolio');
-    const gallery = document.querySelector('.gallery');
-    const containerElement = document.createElement('div');
+    const parent = document.querySelector('.filters');
 
-    containerElement.setAttribute('class', 'filters')
-    filters.forEach(element => {
-        const filterElement = document.createElement('button');
+    const filtersHTML = `
+        <button class="filterButton" id="Tous">Tous</button>
+        <button class="filterButton" id="Objets">Objets</button>
+        <button class="filterButton" id="Appartements">Appartements</button>
+        <button class="filterButton" id="Hotel">Hôtels & restaurants</button>
+    `;
 
-        filterElement.setAttribute('class', 'filterButton')
-        filterElement.setAttribute('id', element === 'Hôtels & restaurants' ? 'Hotel' : `${element}`);
-        filterElement.innerText = element;
-
-        containerElement.appendChild(filterElement);
-    })
-
-    parent.insertBefore(containerElement,gallery);
+    parent.insertAdjacentHTML('beforeend', filtersHTML);
 }
+
