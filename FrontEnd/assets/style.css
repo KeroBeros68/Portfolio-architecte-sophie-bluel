@@ -89,6 +89,7 @@ nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
+	gap: 30px;
 
 }
 nav li {
@@ -138,31 +139,31 @@ li:hover {
 	width: 100%;
 
 }
-#contact {
+#contact, #login{
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
-#contact > * {
+#contact , #login > * {
 	text-align: center;
 
 }
 #contact h2{
 	margin-bottom: 20px;
 }
-#contact form {
+#contact form, #login form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#contact input {
+#contact input, #login input {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-#contact label {
+#contact label, #login label {
 	margin: 2em 0 1em 0;
 }
 #contact textarea {
@@ -183,6 +184,7 @@ input[type="submit"]{
 
 footer{
 	background-color: white;
+	height: 60px;
 }
 footer nav ul {
 	display: flex;
@@ -195,16 +197,16 @@ footer nav ul {
 
 .filters{
 	width: 100%;
-	max-width: 585px;
 	margin:auto;
 	margin-bottom: 60px;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 }
 
 .filterButton {
 	height: 37px;
-	padding: 0;
+	min-width: 100px;
+	margin : 0 10px 0 0;
 	font-size: 16px;
 	font-family: 'Syne';
 	font-weight: 700;
@@ -217,13 +219,10 @@ footer nav ul {
 	cursor: pointer;
 }
 
-#Tous, #Objets {
-	width: 100px;
-}
-#Appartements{
+.filter2{
 	width: 157px;
 }
-#Hotel {
+.filter3{
 	width: 198px;
 }
 
@@ -232,6 +231,11 @@ footer nav ul {
 	color: white;
 }
 
-.desactivated {
+.hidden {
 	display: none;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
 }

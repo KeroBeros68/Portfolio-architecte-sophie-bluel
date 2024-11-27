@@ -9,7 +9,6 @@ function showGallery(array) {
 
         imageElement.src = element.imageUrl;
         captionElement.innerHTML = element.title;
-
         figureElement.appendChild(imageElement);
         figureElement.appendChild(captionElement);
 
@@ -17,27 +16,31 @@ function showGallery(array) {
     })
 }
 
-function generateFilters() {
-    const parent = document.querySelector('.filters');
+function generateFilters(categories) {
 
-    const filtersHTML = `
-        <button class="filterButton" id="Tous">Tous</button>
-        <button class="filterButton" id="Objets">Objets</button>
-        <button class="filterButton" id="Appartements">Appartements</button>
-        <button class="filterButton" id="Hotel">Hotels & restaurants</button>
-    `;
+    const containerElement = document.querySelector('.filters');
 
-    parent.insertAdjacentHTML('beforeend', filtersHTML);
+    categories.forEach(element => {
+        const filterElement = document.createElement('button');
+
+        filterElement.className = `filterButton filter${element.id}`;
+        filterElement.setAttribute('id', element.name);
+        filterElement.innerText = element.name;
+
+        containerElement.appendChild(filterElement);
+    })
 }
 
+
 function filter(filter, data,categories) {
+
     let id = 0;
     categories.forEach(element => {
-        if(filter === element.name){
+        if(filter === element.name) {
             id = element.id;
         }
     });
-    const filteredData = data.filter(data => data.categoryId === id);
     
+    const filteredData = data.filter(data => data.categoryId === id);  
     showGallery(id === 0 ? data : filteredData);
 }
