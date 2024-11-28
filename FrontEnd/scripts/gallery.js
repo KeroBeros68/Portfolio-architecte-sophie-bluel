@@ -32,7 +32,7 @@ function generateFilters(categories) {
 }
 
 
-function filter(filter, data,categories) {
+function filter(filter, data, categories) {
 
     let id = 0;
     categories.forEach(element => {
