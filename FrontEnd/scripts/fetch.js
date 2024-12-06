@@ -1,4 +1,4 @@
-async function fetchGallery(){
+async function fetchGallery() {
     try {        
         const gallery = window.localStorage.getItem("gallery"); 
 
@@ -12,7 +12,6 @@ async function fetchGallery(){
             window.localStorage.setItem("gallery", JSON.stringify(data)); // Sauvegarder dans localStorage
             return data;
         } else {
-            console.log('Galerie chargée depuis localStorage');
             return data = JSON.parse(gallery);
         }
     } catch (error) {
@@ -21,7 +20,7 @@ async function fetchGallery(){
     }
 }
 
-async function fetchCategories(){
+async function fetchCategories() {
     try {
         const categories = window.localStorage.getItem("categories");
         
@@ -35,13 +34,42 @@ async function fetchCategories(){
             window.localStorage.setItem("categories", JSON.stringify(data)); // Sauvegarder dans localStorage
             return data;
         } else {
-            console.log('Categories chargée depuis localStorage');
             return data = JSON.parse(categories);
-        }
-
-        
+        }   
     } catch (error) {
         console.error('Erreur lors de la récupération des données :', error);
         return null;
     }
 }
+
+async function loginFetch(body) {
+    try{
+        const response = await fetch('http://localhost:5678/api/users/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
+        
+        if (!response.ok) {
+            throw new Error(response.status);
+        }
+
+        const data = await response.json();
+        window.localStorage.setItem("token", data.token); // Sauvegarder dans localStorage
+        window.location.href = './index.html';
+    } catch (error) {
+        switch (error.message) {
+            case '401' :
+                errorLogmessage();
+                break;
+            case '404' :
+                errorLogmessage();
+                break;
+            default:
+                console.log('Une erreur est survenue: ' + error);
+                break;
+        };
+    };
+};

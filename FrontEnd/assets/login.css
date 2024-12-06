@@ -24,3 +24,8 @@ form {
     width: 179px;
     height: 36px;
 }
+
+#formLogin p{
+	color: red;
+	padding: 10px;
+}

@@ -16,24 +16,28 @@ function showGallery(array) {
     })
 }
 
-function generateFilters(categories) {
-
+function generateFilters(categories, gallery) {
+    // Ajouter les boutons filtres 
     const containerElement = document.querySelector('.filters');
-
     categories.forEach(element => {
         const filterElement = document.createElement('button');
-
         filterElement.className = `filterButton filter${element.id}`;
         filterElement.setAttribute('id', element.name);
         filterElement.innerText = element.name;
-
         containerElement.appendChild(filterElement);
     })
+    // Ajouter les écouteurs sur les boutons
+    const buttons = document.querySelectorAll('.filterButton');
+    buttons.forEach(button => {
+        button.addEventListener('click', event => {
+            const filterName = event.target.innerText;
+            filter(filterName, gallery, categories);
+        });
+    });
 }
 
 
 function filter(filter, data, categories) {
-
     let id = 0;
     categories.forEach(element => {
         if(filter === element.name) {
