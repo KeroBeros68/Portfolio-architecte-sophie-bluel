@@ -41,6 +41,8 @@ function editionMode() {
     editionButton.className = 'editionBtn';
     editionButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i> Modifier';
     parentElement.appendChild(editionButton);
+
+    editionButton.addEventListener('click', showModale)
 }
 
 const currentPage = window.location.pathname;
