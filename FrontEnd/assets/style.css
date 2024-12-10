@@ -288,24 +288,27 @@ a {
     margin-left: 10px; /* Espace entre le bouton et le titre */
 }
 
+
+/***** modale ****/
 #modale {
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.8);
+	background: rgba(0, 0, 0, 0.5);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	z-index: 1000;
 }
 
-.modale-Wrapper {
+#modale-Wrapper {
 	max-width: 630px;
 	max-height: 688px;
 	width: 100%;
 	height: 100%;
+	padding: 0 105px;
 	background-color: #ffffff;
 	border-radius: 10px;
 	display: flex;
@@ -325,7 +328,7 @@ a {
 	background: inherit;
 }
 
-.modale-Wrapper h2 {
+#modale-Wrapper h2 {
 	margin: 60px 0 50px 0;
 	color: #000000;
 	font-family: 'Work Sans';
@@ -347,12 +350,18 @@ a {
 	height: 36px;
 }
 
+.input-Modale {
+	border-top: #B3B3B3 2px solid;
+	display: flex;
+	justify-content: center;
+}
+
 .main-Modale {
-	max-width: 420px;
 	flex: 1;
 	width: 100%;
-	border-bottom: #B3B3B3 2px solid;
-	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .modale-Gallery {
@@ -360,6 +369,7 @@ a {
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	grid-column-gap: 10px;
 	grid-row-gap: 30px;
+	overflow: auto;
 }
 .modale-Gallery img {
 	width: 100%;
@@ -386,7 +396,7 @@ a {
 	align-items: center;
 }
 
-#close-Modale:hover, .trash:hover {
+#close-Modale:hover, .trash:hover, button:hover, input[type="submit"]:hover {
 	cursor: pointer;
-	transform: scale(1.2);
+	transform: scale(1.1);
 }
