@@ -9,18 +9,20 @@ function logIn() {
         let headers = { 'Content-Type': 'application/json' }
         let login = new Api('users/login', headers , JSON.stringify(loginInfo));
         let token = await login.push();
-        token = await token.json();
-        window.localStorage.setItem("token", token.token);
-        window.location.href = './index.html';
+        if (token != null) {
+            token = await token.json();
+            window.localStorage.setItem("token", token.token);
+            window.location.href = './index.html';
+        }
     });    
 }
 
 function errorLogmessage() {
     let parentElement = document.querySelector('#form-login');
-    let errorElement = document.querySelector('.error-message');
+    let errorElement = document.querySelector('#error-message');
     let referenceElement = document.querySelector('#submit-btn');
     let messageContainer = document.createElement('div');
-    console.log(errorElement)
+    messageContainer.id = 'error-message';
     if (!errorElement) {
         messageContainer.innerHTML = '<p>Utilisateur ou mot de passe incorect</p>';
         messageContainer.className = 'errorMessage';

@@ -18,7 +18,9 @@ function closeModale() {
     let element = document.querySelector('.landing-modale');
     if (element) {
         element.remove();
-    }   
+    }
+    let validateButton = document.querySelector('#add-validation');
+    validateButton.classList.add('validation-nok');
     document.querySelector('#backward-modale').setAttribute('style', 'display:none');
     modale.removeEventListener('click', closeModale);
     document.querySelector('#close-modale').removeEventListener('click', closeModale);
@@ -93,11 +95,30 @@ async function modaleAddPage() {
         showNewPhoto(fileInput);
     })
 
-    document.querySelector('#add-validation').addEventListener('click', event => {
-        event.preventDefault();
-        postPhoto()
+    let nameInput = document.querySelector('#newPhoto-name');
+    fileInput.addEventListener('change', () => {
+        updateButtonState(fileInput,nameInput)
     });
-
+    nameInput.addEventListener('input',() => {
+        updateButtonState(fileInput,nameInput)
+    });
+    
+}
+function updateButtonState(fileInput,nameInput) {
+    let isImageSelected = fileInput.files.length > 0;
+    let isNameFilled = nameInput.value.trim() !== '';
+    let validateButton = document.querySelector('#add-validation');
+    console.log(isImageSelected)
+    if (isImageSelected && isNameFilled) {            
+        validateButton.classList.remove('validation-nok');
+        validateButton.addEventListener('click', event => {
+            event.preventDefault();
+            postPhoto()
+            console.log(1)
+        });
+    } else {
+        validateButton.classList.add('validation-nok');
+    }
 }
 
 function backwardModale() {

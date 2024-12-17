@@ -36,8 +36,18 @@ class Api {
             }                              
             return response;
         } catch (error) {
-            console.error('Erreur lors de la récupération des données :', error);
-            console.log(this.host + this.path)
+            console.log(error.message)
+            switch (error.message) {
+                case 'Erreur HTTP : 401' :
+                    errorLogmessage();
+                    break;
+                case 'Erreur HTTP : 404' :
+                    errorLogmessage();
+                    break;
+                default:
+                    alert('Une erreur est survenue: ' + error);
+                    break;
+            };
             return null;
         }
     }

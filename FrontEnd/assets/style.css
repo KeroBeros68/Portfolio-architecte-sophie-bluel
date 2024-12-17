@@ -468,3 +468,11 @@ button:hover, input[type="submit"]:hover, input[type="button"]:hover, .custom-fi
 .fa-image {
 	color: #B9C5CC;
 }
+
+#error-message {
+	color: red;
+}
+
+#modale #modale-wrapper .validation-nok {
+	background: #A7A7A7 ; 
+}
