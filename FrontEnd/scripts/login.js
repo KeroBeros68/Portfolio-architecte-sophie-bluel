@@ -7,8 +7,8 @@ function logIn() {
             password : event.target.querySelector('#password').value
         };
         let headers = { 'Content-Type': 'application/json' }
-        let login = new Api('users/login', headers , JSON.stringify(loginInfo));
-        let token = await login.push();
+        let api = new Api();
+        let token = await api.push('users/login', headers , JSON.stringify(loginInfo));
         if (token != null) {
             token = await token.json();
             window.localStorage.setItem("token", token.token);

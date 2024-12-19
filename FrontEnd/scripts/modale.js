@@ -30,9 +30,9 @@ function closeModale() {
 
 async function modaleGallery() {
     // Récupérer la galerie
-    let gallery = new Api('works');
+    let api = new Api();
     // Afficher la galerie
-    gallery = await gallery.get();
+    gallery = await api.get('works');
     gallery = await gallery.json();
 
     document.querySelector('#modale-title').innerText = 'Galerie photo';
@@ -79,8 +79,8 @@ async function modaleAddPage() {
     document.querySelector('#backward-modale').addEventListener('click', backwardModale);
 
     // Récupérer les catégories
-    let categories = new Api('categories');
-    categories = await categories.get();
+    let categories = new Api();
+    categories = await categories.get('categories');
     categories = await categories.json();
     document.querySelector('#options').innerHTML = '';
     categories.forEach(element => {
@@ -111,11 +111,7 @@ function updateButtonState(fileInput,nameInput) {
     console.log(isImageSelected)
     if (isImageSelected && isNameFilled) {            
         validateButton.classList.remove('validation-nok');
-        validateButton.addEventListener('click', event => {
-            event.preventDefault();
-            postPhoto()
-            console.log(1)
-        });
+        validateButton.addEventListener('click', postPhoto);
     } else {
         validateButton.classList.add('validation-nok');
     }
@@ -155,7 +151,9 @@ function showNewPhoto(fileInput) {
     }
 }
 
-async function postPhoto() {
+async function postPhoto(event) {
+    event.preventDefault();
+
     let image = document.querySelector('#button-addPhoto').files[0];
     let title = document.querySelector('#newPhoto-name').value;
     let categorie = document.querySelector('#options').value;
@@ -170,15 +168,15 @@ async function postPhoto() {
     let headers ={
             'Authorization': `Bearer ${token}`
         };
-    let apiPush = new Api('works',headers,formData);
-    apiPush.push();
+    let api = new Api();
+    await api.push('works',headers,formData);
     resetForm();
-    // Récupérer la galerie
-    let gallery = new Api('works');
     // Afficher la galerie
-    gallery = await gallery.get();
+    console.log('test')
+    gallery = await api.get('works');
     gallery = await gallery.json();
     showGallery(gallery);
+    document.querySelector('#add-validation').removeEventListener('click', postPhoto);
 }
 
 async function deletePhoto(element) {  
@@ -188,12 +186,10 @@ async function deletePhoto(element) {
             'Authorization': `Bearer ${token}`
         };
 
-    let apiPush = new Api(`works/${element}`,headers);
-    apiPush.delete();
-    // Récupérer la galerie
-    let gallery = new Api('works');
+    let api = new Api();
+    api.delete(`works/${element}`,headers);
     // Afficher la galerie
-    gallery = await gallery.get();
+    gallery = await api.get('works');
     gallery = await gallery.json();
     showGallery(gallery);
     article = document.getElementById(`article${element}`);

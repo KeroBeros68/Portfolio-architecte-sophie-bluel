@@ -1,11 +1,11 @@
 async function main() {
     try {
         // Récupérer la galerie
-        let gallery = new Api('works');
+        let api = new Api();
         // Récupérer le token depuis le local Storage
         let token = window.localStorage.getItem('token');
         // Afficher la galerie
-        gallery = await gallery.get();
+        gallery = await api.get('works');
         gallery = await gallery.json();
         showGallery(gallery);
         if (token != null) {
@@ -14,8 +14,7 @@ async function main() {
             editionMode();
         } else {
             // Récupérer les catégories
-            let categories = new Api('categories');
-            categories = await categories.get();
+            categories = await api.get('categories');
             categories = await categories.json();
             // Générer les filtres
             generateFilters(categories, gallery);
