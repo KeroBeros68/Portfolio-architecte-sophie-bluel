@@ -471,6 +471,7 @@ button:hover, input[type="submit"]:hover, input[type="button"]:hover, .custom-fi
 
 #error-message {
 	color: red;
+	padding-top: 1em;
 }
 
 #modale #modale-wrapper .validation-nok {

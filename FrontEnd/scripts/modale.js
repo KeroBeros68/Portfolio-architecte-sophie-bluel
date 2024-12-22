@@ -21,6 +21,7 @@ function closeModale() {
     }
     let validateButton = document.querySelector('#add-validation');
     validateButton.classList.add('validation-nok');
+    validateButton.removeEventListener('click', postPhoto);
     document.querySelector('#backward-modale').setAttribute('style', 'display:none');
     modale.removeEventListener('click', closeModale);
     document.querySelector('#close-modale').removeEventListener('click', closeModale);
@@ -114,6 +115,7 @@ function updateButtonState(fileInput,nameInput) {
         validateButton.addEventListener('click', postPhoto);
     } else {
         validateButton.classList.add('validation-nok');
+        validateButton.removeEventListener('click', postPhoto);
     }
 }
 
@@ -123,6 +125,9 @@ function backwardModale() {
     document.querySelector('#backward-modale').removeEventListener('click', backwardModale);
     modaleGallery();
     resetForm()
+    let validateButton = document.querySelector('#add-validation');
+    validateButton.classList.add('validation-nok');
+    validateButton.removeEventListener('click', postPhoto);
 }
 
 function resetForm() {
