@@ -42,7 +42,7 @@ class Api {
                     errorLogmessage();
                     break;
                 default:
-                    alert('Une erreur est survenue: ' + error);
+                    console.log('Une erreur est survenue: ' + error);
                     break;
             };
             return null;

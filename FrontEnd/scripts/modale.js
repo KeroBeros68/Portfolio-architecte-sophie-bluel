@@ -25,7 +25,7 @@ function closeModale() {
     document.querySelector('#backward-modale').setAttribute('style', 'display:none');
     modale.removeEventListener('click', closeModale);
     document.querySelector('#close-modale').removeEventListener('click', closeModale);
-    resetForm()
+    resetForm();
 }
 
 
@@ -138,6 +138,9 @@ function resetForm() {
     if (element) {
         element.remove();
     }
+    let fileInput = document.querySelector('#button-addPhoto');
+    let nameInput = document.querySelector('#newPhoto-name');
+    updateButtonState(fileInput,nameInput);
 }
 
 function showNewPhoto(fileInput) {
@@ -153,6 +156,8 @@ function showNewPhoto(fileInput) {
         newPhoto.src = URL.createObjectURL(files[0]);
         document.querySelector('#add-container').appendChild(newPhoto);
         document.querySelector('.add-container').setAttribute('style','display:none');
+    } else {
+        fileInput.value = '';
     }
 }
 
@@ -177,7 +182,6 @@ async function postPhoto(event) {
     await api.push('works',headers,formData);
     resetForm();
     // Afficher la galerie
-    console.log('test')
     gallery = await api.get('works');
     gallery = await gallery.json();
     showGallery(gallery);
