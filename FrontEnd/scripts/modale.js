@@ -64,7 +64,6 @@ async function modaleGallery() {
 
         galleryContainer.appendChild(articleElement);
         document.querySelector(`#id${element.id}`).addEventListener('click', event => {
-            console.log(element.id);
             deletePhoto(element.id);
         });
     })
@@ -92,14 +91,13 @@ async function modaleAddPage() {
     });
 
     let fileInput = document.querySelector('#button-addPhoto');
+    let nameInput = document.querySelector('#newPhoto-name');
+
     fileInput.addEventListener('change', () => {
         showNewPhoto(fileInput);
+        updateButtonState(fileInput,nameInput)
     })
 
-    let nameInput = document.querySelector('#newPhoto-name');
-    fileInput.addEventListener('change', () => {
-        updateButtonState(fileInput,nameInput)
-    });
     nameInput.addEventListener('input',() => {
         updateButtonState(fileInput,nameInput)
     });
@@ -109,7 +107,6 @@ function updateButtonState(fileInput,nameInput) {
     let isImageSelected = fileInput.files.length > 0;
     let isNameFilled = nameInput.value.trim() !== '';
     let validateButton = document.querySelector('#add-validation');
-    console.log(isImageSelected)
     if (isImageSelected && isNameFilled) {            
         validateButton.classList.remove('validation-nok');
         validateButton.addEventListener('click', postPhoto);

@@ -24,30 +24,6 @@ async function main() {
     };
 }
 
-
-function hiddenElement() {
-    const elementArray = ['.filters','.login-nav','.logout-nav'];
-    elementArray.forEach ( element => {
-        const filterDiv = document.querySelector(element);
-        filterDiv.classList.toggle('hidden');
-    });
-}
-
-function editionMode() {
-    const editionHeader = document.createElement('div');
-    editionHeader.className = 'edition-header';
-    editionHeader.innerHTML = '<i class="fa-regular fa-pen-to-square"></i> Mode édition';
-    document.body.prepend(editionHeader);
-
-    const parentElement = document.querySelector('.portfolio-title');
-    const editionButton = document.createElement('button');
-    editionButton.className = 'edition-btn';
-    editionButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i> Modifier';
-    parentElement.appendChild(editionButton);
-
-    editionButton.addEventListener('click', openModale);
-}
-
 const currentPage = window.location.pathname;
 
 if (currentPage.includes('index.html')) {
